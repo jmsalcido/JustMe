@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Solo a mi?</string>
+    
+    <string name="addressHint">Pssst, la direccion aqui!</string>
+	<string name="no">YA-YA-YA...\nLA CAGASTE?</string>
+	<string name="yes">Servidor EN LINEA</string>
+	
+	<string name="mainButton">Solo a mi?</string>
+	
+	<string name="dialogContent">Solo a Mi?:\n
+	Verifica si tu servidor esta EN LINEA ó NO\n
+	desde tu dispositivo Android.\n
+	\n
+	No olvides visitar mi blog:\n
+	http://otfusion.org/jose152
+	</string>
+	<string name="dialogCancel">CHTM!</string>
+    <string name="dialogVisit">Visitar Blog!</string>
+	
+	<string name="notificationTitle">Corriendo Solo Yo?</string>
+	<string name="notificationText">Picale aqui para iniciar Solo Yo?</string>
+	
+	<string name="menuSettings">Opciones</string>
+	<string name="menuAbout">Sobre</string>
+	<string name="menuExit">Salir</string>
+	
+	<string name="settings_name">Solo a Mi - Opciones</string>
+	<string name="settings_enabled_notifications">Activar notificacion</string>
+	<string name="settings_detection_title">Deteccion de Puertos</string>
+</resources>

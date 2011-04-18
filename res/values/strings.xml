@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Me?</string>
+    
+    <string name="addressHint">Pssst, just the address here!</string>
+	<string name="no">Did-did-did you, just...\nBROKE THE INTERNET?</string>
+	<string name="yes">This server is ONLINE</string>
+	
+	<string name="mainButton">Is Just Me?</string>
+	
+	<string name="dialogContent">Just Me?:\n
+	Check if your server is online or not\n
+	from your Android device.\n
+	\n
+	Dont forget to visit my blog:\n
+	http://otfusion.org/jose152
+	</string>
+	<string name="dialogCancel">STFU!</string>
+    <string name="dialogVisit">Visit Blog!</string>
+	
+	<string name="notificationTitle">Running Just Me?</string>
+	<string name="notificationText">Click here to start Just Me</string>
+	
+	<string name="menuSettings">Settings</string>
+	<string name="menuAbout">About</string>
+	<string name="menuExit">Exit App</string>
+	
+	<string name="settings_name">Just Me - Settings</string>
+	<string name="settings_enabled_notifications">Enable Notification?</string>
+	<string name="settings_detection_title">Port Detection</string>
+</resources>
