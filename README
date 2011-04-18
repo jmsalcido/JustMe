@@ -1,0 +1,23 @@
+# README FILE
+# This project is released under the GNU GPL v3
+
+# For more info visit http://otfusion.org/jose152
+# Feature List:
+#v1.0:
+	- Connecting to a remote host, port 80 (httpd server)
+	- Host Detection
+	- Cool ugly icons
+	- Tested on Samsung Galaxy S
+#v1.1:
+	- shitty Port detection via EditText
+	- Added Dialog boxes (or tried to add this!)
+#v1.2:
+	- not so shitty Port detection via EditText
+	- Added Dialog boxes (or tried to add this!)
+	- Maybe release at the Market
+#v1.3:
+	- pseudo Design modified, after this version, this was just
+	  shit code pasted on the main activity. - being sirius -
+	- Added some ... settings?, still working on them
+	- Yisus christ... I need some images for that suckerdroid.
+# To myself and others: please improve this text.
