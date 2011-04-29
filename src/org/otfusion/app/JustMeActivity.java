@@ -1,5 +1,7 @@
 /*
  * 	Start Here yo dawg!
+ * JustMeActivity.java:
+ * This class is part of the JustMe Android Application old comments stay:
  * 
  *  First App ever, so it will suck
  *  Just Me - Android app
@@ -17,20 +19,14 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *  
- *  ALSO: Javadoc style is for little crying girls or Im just too lazy to build and write it.
- * 
  * 
  *  Basic Info:
- *  This app will ping your or another's one server and will tell you
+ *  This app will connect to your or another's one server and will tell you
  *  if it is online or offline.
  *  
  *  If after, 5segs (5000ms) you dont get an answer then:
  *  
- *  It is offline or, you dont have internet.
- *  
- *  Also, the game.
- * 
+ *  It is offline or, you dont have internet. 
  */
 package org.otfusion.app;
 
@@ -40,11 +36,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class JustMeActivity extends Activity {
@@ -57,35 +55,37 @@ public class JustMeActivity extends Activity {
 	
 	public static Button button;
 	public static EditText textBox;
+	public static ImageView imageTop, imageLoading;
 	
 	public static String mAddress;
-	public static final String SHAREDPREFERENCES = "values";
 	
+	// MENU OPTIONS
+	public static final int PREFERENCES_ID = Menu.FIRST;
+	public static final int ABOUT_ID = PREFERENCES_ID + 1;
+	public static final int EXIT_ID = ABOUT_ID + 1;
+
+	// DIALOGS
+	public static final int ABOUT_DIALOG = 1;
+	
+	// CONSTANTS
+	public static final String SHAREDPREFERENCES = "values";
+	public static final String DEBUGTAG = "[DEBUG]";
+	
+	/**
+	 * OnCreate method:
+	 * this method will create the main layout and functions of the app
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		// Get context for other uses.
-		mContexto = getApplicationContext();
-		
-		// SharedPreferences loaded.
-		mSharedPreferences = getSharedPreferences(SHAREDPREFERENCES, 0);
-		mAddress = mSharedPreferences.getString("address", mAddress);
-		
-		// Creates the JustMeEngine engine object to work with.
-		engine = new JustMeEngine(this);
-		
-		// Layout objects
-		button = (Button) findViewById(R.id.button);
-		textBox = (EditText) findViewById(R.id.name);
-		button.setOnClickListener(new OnlineButton());
-		
-		if(mAddress != null)
-			textBox.setText(mAddress);
+		fillApp();
 	}
 	
-
+	/**
+	 * onStop method:
+	 * this method will save the last used server to load again the last time
+	 */
 	@Override
 	protected void onStop() {
 		super.onStop();
@@ -94,7 +94,7 @@ public class JustMeActivity extends Activity {
 		editor.putString("address", mAddress);
 		editor.commit();
 	}
-
+	
 	/*
 	 * TODO: Corregir aqui ?, NO RECUERDO QUE IVA A CORREGIR LULZ!!! JAJAJAJAJAJAJA
 	 */
@@ -102,17 +102,32 @@ public class JustMeActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 	}
+	
+	/**
+	 * This method will fill and prepare the views and ui.
+	 */
+	private void fillApp() {
+		// Get context for other uses.
+		mContexto = getApplicationContext();
+		// Creates the JustMeEngine engine object to work with.
+		engine = new JustMeEngine(this);
+		// Layout objects
+		button = (Button) findViewById(R.id.button);
+		textBox = (EditText) findViewById(R.id.name);
+		
+		button.setOnClickListener(new OnlineButton());
+		
+		// SharedPreferences loaded.
+		mSharedPreferences = getSharedPreferences(SHAREDPREFERENCES, 0);
+		mAddress = mSharedPreferences.getString("address", mAddress);
+		
+		if(mAddress != null)
+			textBox.setText(mAddress);
+	}
 
-	// MENU OPTIONS
-	public static final int PREFERENCES_ID = Menu.FIRST;
-	public static final int ABOUT_ID = PREFERENCES_ID + 1;
-	public static final int EXIT_ID = ABOUT_ID + 1;
-
-	// DIALOGS
-	public static final int ABOUT_DIALOG = 1;
-
-	/*
-	 * onCreateOptionsMenu menu for the application
+	/**
+	 * onCreateOptionsMenu method:
+	 * this method will create the options menu for the app
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,8 +139,9 @@ public class JustMeActivity extends Activity {
 		return true;
 	}
 
-	/*
-	 * onOptionsItemSelected selecting an option
+	/**
+	 * onOptionsItemSelected method:
+	 * this will handle the options menu selections.
 	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -144,9 +160,9 @@ public class JustMeActivity extends Activity {
 		}
 	}
 
-	/*
-	 * About Dialog - Showing some info about the application like author's
-	 * blog, and other stupid things.
+	/**
+	 * onCreateDialog method:
+	 * this method will show some info about the application
 	 */
 	@Override
 	protected Dialog onCreateDialog(int id) {
@@ -163,26 +179,29 @@ public class JustMeActivity extends Activity {
 		return dialog;
 	}
 	
-	/*
-	 * Handling the click on the button.
+	/**
+	 * OnlineButton class:
+	 * this class will handle the click listener of the button in the main UI.
 	 */
 	public class OnlineButton implements View.OnClickListener {
 		public OnlineButton() {}
 		@Override
 		public void onClick(View v) {
+			button.setEnabled(false);
 			mAddress = textBox.getText().toString();
 			engine.setAddress(mAddress);
 			engine.setPort(mAddress);
 			boolean online = engine.isOnline();
 			if (online) {
-				// ImageView img = (ImageView) findViewById(R.id.imagenTop);
-				// img.setImageResource(R.id.imageOnline);
+				// imageTop = (ImageView) findViewById(R.id.imagenTop);
+				// imageTop.setImageResource(R.id.imageOnline);
 				toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
 			} else {
 				// img offline
 				toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
 			}
 			toast.show();
+			button.setEnabled(true);
 		}
 	}
 }

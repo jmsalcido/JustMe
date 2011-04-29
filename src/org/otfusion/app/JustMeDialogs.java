@@ -1,11 +1,7 @@
 /*
- * Just Me?
- * Jose M. Salcido Aguilar
- * 
  * JustMeDialog.java:
  * This class will do the work of preparing the dialogs
  * and returning them to the onCreateDialog on an Activity/child
- * 
  */
 
 package org.otfusion.app;
@@ -32,6 +28,13 @@ public class JustMeDialogs {
 		mContext = context;
 	}
 	
+	/**
+	 * prepareDialog(int id):
+	 * this method will prepare the dialog box selected by an id
+	 * passed by the onCreateDialog on an Activity.
+	 * @param id
+	 * @return
+	 */
 	private Dialog prepareDialog(int id) {
 		Dialog dialog;
 		switch(id) {
@@ -47,11 +50,17 @@ public class JustMeDialogs {
 			 */
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+			/*
+			 * I dont really know what this does but... it works!
+			 */
 			LayoutInflater inflater = (LayoutInflater) mContext.getApplicationContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View layout = inflater.inflate(R.layout.about_dialog,
 					(ViewGroup) new View(mContext).findViewById(R.id.layout_root));
 	
+			/*
+			 * Taking control again!
+			 */
 			TextView tv = (TextView) layout.findViewById(R.id.text);
 			tv.setText(info);
 	
@@ -68,10 +77,6 @@ public class JustMeDialogs {
 					.setNegativeButton(mContext.getString(R.string.dialogVisit),
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) {
-									
-									/*
-									 * Open the blog
-									 */
 									Uri uri = Uri.parse(mBlogURL);
 									Intent i = new Intent(Intent.ACTION_VIEW, uri);
 									mContext.startActivity(i);
@@ -87,6 +92,12 @@ public class JustMeDialogs {
 		return dialog;
 	}
 	
+	/**
+	 * getDialog(int id) method:
+	 * this method will return a prepared dialog for being used in the activity
+	 * @param id
+	 * @return
+	 */
 	public Dialog getDialog(int id) {
 		return this.prepareDialog(id);
 	}

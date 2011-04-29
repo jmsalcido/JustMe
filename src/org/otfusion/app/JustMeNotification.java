@@ -1,7 +1,4 @@
 /*
- * Just Me?
- * Jose M. Salcido Aguilar
- * 
  * JustMeNotification.java:
  * This class will do the work of the NotificationManager
  */
@@ -24,18 +21,15 @@ public class JustMeNotification {
 	private NotificationManager mNotificationManager;
 	private SharedPreferences mSharedPreferences;
 	
-	/*
-	 * Default builder.
-	 */
 	public JustMeNotification(Context context) {
 		mContext = context;
 		mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 		mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 	
-	/*
-	 * Enables or Disables the Notification
-	 * TODO: Make it work OKAY.
+	/**
+	 * update() method:
+	 * this method will enable or disalbe the notification in the notification manager
 	 */
 	public void update() {
 		if(mSharedPreferences.getBoolean("enableNotifications", false)) {
@@ -45,8 +39,9 @@ public class JustMeNotification {
 		}
 	}
 	
-	/*
-	 * Starts a Notification via NotificationManager
+	/**
+	 * enableNotification() method:
+	 * this method will enable the notificication, nothin more to say.
 	 */
 	private void enableNotification() {
 		Intent notificationIntent = new Intent(mContext, JustMeActivity.class);
@@ -61,8 +56,9 @@ public class JustMeNotification {
 		mNotificationManager.notify(NOTIFICATION_ID, mNotification);
 	}
 	
-	/*
-	 * Disables the Notification
+	/**
+	 * disableNotification() method:
+	 * this method will disable the notificication, nothin more to say.
 	 */
 	private void disableNotification() {
 		mNotificationManager.cancel(NOTIFICATION_ID);

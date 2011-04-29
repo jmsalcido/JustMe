@@ -1,3 +1,10 @@
+/*
+ * JustMeEngine.java:
+ * This class is part of JustMe Android Application.
+ * 
+ * The class will work with the connection part of the app.
+ */
+
 package org.otfusion.app;
 
 import java.io.IOException;
@@ -20,26 +27,26 @@ public class JustMeEngine {
 		this.populateMap();
 	}
 	
-	/*
-	 * HashMap for the Address and Port, must add some other protocols.
+	/**
+	 * populateMap() method:
+	 * this method will populate herpderp the map herpderp
 	 */
 	private void populateMap() {
+		// TODO add a very good list of ports.
 		PORTS.put("http", 80);
 		PORTS.put("https", 80);
 		PORTS.put("ftp", 21);
 		PORTS.put("smtp", 25);
 		PORTS.put("otserv", 7171);
+		//PORTS.put();
 	}
 	
-	/*
-	 * isOnline(String address): ugly way to tell you if that Internet Address
-	 * is available or not by connecting a socket... I need a remote way to do
-	 * this! :$
+	/**
+	 * isOnline(String address) method:
+	 * this method will check if the server is online or offline
 	 * 
 	 * @param address ip address or dns
-	 * 
 	 * @return true or false
-	 * 
 	 */
 	public boolean isOnline() {
 		Socket socket;
@@ -53,14 +60,15 @@ public class JustMeEngine {
 		}
 	}
 	
-	/*
-	 * getHost(String address): A very ugly (I dont know, I think this could be
-	 * better but I cant imagine it lol) way to get the host in an URL.
+	/**
+	 * getHost(String address) method:
+	 * this method will get only the host from an address supplied.
+	 * 
+	 * Example:
+	 * http://otfusion.org/jose152 -> otfusion.org
 	 * 
 	 * @param address URL
-	 * 
 	 * @return dah Host!
-	 * 
 	 */
 	private String getHost(String address) {
 		String host = address;
@@ -72,15 +80,11 @@ public class JustMeEngine {
 		return host;
 	}
 	
-	/*
-	 * getPort(String address): Get the fucking port... Why all looks ugly for
-	 * me? :/
-	 * 
+	/**
+	 * getPort(String address) method:
+	 * this method will get the port from an address.
 	 * @param address
-	 * 
 	 * @return port
-	 * 
-	 * TODO Cambiar a otra clase.
 	 */
 	private int getPort(String address) {
 		// Default port will be 80, the httpd port.
@@ -102,15 +106,19 @@ public class JustMeEngine {
 		return port;
 	}
 	
-	/*
-	 * get the host and set as address.
+	/**
+	 * setAddress(String address) method:
+	 * this method will set the address of the object to the address supplied
+	 * @param address
 	 */
 	public void setAddress(String address) {
 		this.address = getHost(address);
 	}
 	
-	/*
-	 * get the port and set as port
+	/**
+	 * setPort(String address) method:
+	 * this method will set the port of the object to the address port supplied
+	 * @param address
 	 */
 	public void setPort(String address) {
 		this.port = getPort(address);
