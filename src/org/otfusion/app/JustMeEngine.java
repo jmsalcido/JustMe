@@ -13,17 +13,13 @@ import java.net.SocketAddress;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 
-import android.content.Context;
-
 public class JustMeEngine {
 	
-	public Context mContext;
-	public static final HashMap<String, Integer> PORTS = new HashMap<String, Integer>();
+	private HashMap<String, Integer> ports = new HashMap<String, Integer>();
 	private String address;
 	private int port;
 	
-	public JustMeEngine(Context context) {
-		mContext = context;
+	public JustMeEngine() {
 		this.populateMap();
 	}
 	
@@ -33,11 +29,11 @@ public class JustMeEngine {
 	 */
 	private void populateMap() {
 		// TODO add a very good list of ports.
-		PORTS.put("http", 80);
-		PORTS.put("https", 80);
-		PORTS.put("ftp", 21);
-		PORTS.put("smtp", 25);
-		PORTS.put("otserv", 7171);
+		ports.put("http", 80);
+		ports.put("https", 80);
+		ports.put("ftp", 21);
+		ports.put("smtp", 25);
+		ports.put("otserv", 7171);
 		//PORTS.put();
 	}
 	
@@ -92,7 +88,7 @@ public class JustMeEngine {
 		if (address.contains("://")) {
 			try {
 				String filter[] = address.split("://");
-				port = PORTS.get(filter[0]);
+				port = ports.get(filter[0]);
 				address = filter[1];
 			} catch (IndexOutOfBoundsException ioobe) {
 				port = 80;

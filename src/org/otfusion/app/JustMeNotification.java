@@ -15,7 +15,7 @@ import android.preference.PreferenceManager;
 
 public class JustMeNotification {
 
-	public final static int NOTIFICATION_ID = 1;
+	public static final int NOTIFICATION_ID = 1;
 	
 	private Context mContext;
 	private NotificationManager mNotificationManager;

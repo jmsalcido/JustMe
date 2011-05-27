@@ -33,7 +33,6 @@ public class JustMePreferencesActivity extends PreferenceActivity implements OnS
 	 * this method will implement the OnSharedPreferenceChange listener
 	 * that will update the notifier when the sharedpreference is changed.
 	 */
-	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		if (key.equals("enableNotifications")) {
 			mNotifier.update();

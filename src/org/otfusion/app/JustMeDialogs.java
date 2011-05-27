@@ -20,8 +20,7 @@ import android.widget.TextView;
 
 public class JustMeDialogs {
 	
-	public static final int ABOUT_DIALOG_MAIN = 1;
-	private static String mBlogURL;
+	private String mBlogURL;
 	private Context mContext;
 	
 	public JustMeDialogs(Context context) {
@@ -38,7 +37,7 @@ public class JustMeDialogs {
 	private Dialog prepareDialog(int id) {
 		Dialog dialog;
 		switch(id) {
-		case ABOUT_DIALOG_MAIN:
+		case JustMeActivity.ABOUT_DIALOG:
 			String info = mContext.getString(R.string.dialogContent);
 			mBlogURL = "http://otfusion.org/jose152";
 
@@ -70,7 +69,6 @@ public class JustMeDialogs {
 			builder.setCancelable(false)
 					.setPositiveButton(mContext.getString(R.string.dialogCancel),
 							new DialogInterface.OnClickListener() {
-								@Override
 								public void onClick(DialogInterface dialog, int id) {
 								}
 							})

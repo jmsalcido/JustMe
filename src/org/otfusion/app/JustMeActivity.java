@@ -36,40 +36,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 import android.widget.Toast;
 
 public class JustMeActivity extends Activity {
 
-	public static Toast toast;
-	public static Context mContexto;
-	public static JustMeEngine engine;
-	public static JustMeDialogs dialogs;
-	public static SharedPreferences mSharedPreferences;
+	private Toast toast;
+	private Context mContexto;
+	private JustMeEngine engine;
+	private JustMeDialogs dialogs;
+	private SharedPreferences mSharedPreferences;
 	
-	public static Button button;
-	public static EditText textBox;
-	public static ImageView imageTop, imageLoading;
+	private Button button;
+	private EditText textBox;
+	//private ImageView imageTop, imageLoading;
 	
-	public static String mAddress;
+	private String mAddress;
 	
-	// MENU OPTIONS
 	public static final int PREFERENCES_ID = Menu.FIRST;
 	public static final int ABOUT_ID = PREFERENCES_ID + 1;
 	public static final int EXIT_ID = ABOUT_ID + 1;
-
-	// DIALOGS
+	
 	public static final int ABOUT_DIALOG = 1;
 	
-	// CONSTANTS
-	public static final String SHAREDPREFERENCES = "values";
-	public static final String DEBUGTAG = "[DEBUG]";
+	private static final String SHAREDPREFERENCES = "values";
+	//private final String DEBUGTAG = "[DEBUG]";
 	
 	/**
 	 * OnCreate method:
@@ -110,7 +106,7 @@ public class JustMeActivity extends Activity {
 		// Get context for other uses.
 		mContexto = getApplicationContext();
 		// Creates the JustMeEngine engine object to work with.
-		engine = new JustMeEngine(this);
+		engine = new JustMeEngine();
 		// Layout objects
 		button = (Button) findViewById(R.id.button);
 		textBox = (EditText) findViewById(R.id.name);
@@ -185,23 +181,27 @@ public class JustMeActivity extends Activity {
 	 */
 	public class OnlineButton implements View.OnClickListener {
 		public OnlineButton() {}
-		@Override
 		public void onClick(View v) {
 			button.setEnabled(false);
 			mAddress = textBox.getText().toString();
 			engine.setAddress(mAddress);
 			engine.setPort(mAddress);
-			boolean online = engine.isOnline();
-			if (online) {
-				// imageTop = (ImageView) findViewById(R.id.imagenTop);
-				// imageTop.setImageResource(R.id.imageOnline);
-				toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
-			} else {
-				// img offline
-				toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
-			}
-			toast.show();
-			button.setEnabled(true);
+			Thread threadOnline = new Thread(new Runnable() {
+				public void run() {
+					boolean online = engine.isOnline();
+					if (online) {
+						// imageTop = (ImageView) findViewById(R.id.imagenTop);
+						// imageTop.setImageResource(R.id.imageOnline);
+						toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
+					} else {
+						// img offline
+						toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
+					}
+					toast.show();
+					button.setEnabled(true);
+				}
+			});
+			threadOnline.start();
 		}
 	}
 }
