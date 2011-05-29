@@ -186,22 +186,17 @@ public class JustMeActivity extends Activity {
 			mAddress = textBox.getText().toString();
 			engine.setAddress(mAddress);
 			engine.setPort(mAddress);
-			Thread threadOnline = new Thread(new Runnable() {
-				public void run() {
-					boolean online = engine.isOnline();
-					if (online) {
-						// imageTop = (ImageView) findViewById(R.id.imagenTop);
-						// imageTop.setImageResource(R.id.imageOnline);
-						toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
-					} else {
-						// img offline
-						toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
-					}
-					toast.show();
-					button.setEnabled(true);
-				}
-			});
-			threadOnline.start();
+			boolean online = engine.isOnline();
+			if (online) {
+				// imageTop = (ImageView) findViewById(R.id.imagenTop);
+				// imageTop.setImageResource(R.id.imageOnline);
+				toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
+			} else {
+				// img offline
+				toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
+			}
+			toast.show();
+			button.setEnabled(true);
 		}
 	}
 }
