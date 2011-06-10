@@ -6,15 +6,10 @@
 	<string name="no">Did-did-did you, just...\nBROKE THE INTERNET?</string>
 	<string name="yes">This server is ONLINE</string>
 	
+	<string name="textoTop">JustMe - Android App</string>
 	<string name="mainButton">Is Just Me?</string>
 	
-	<string name="dialogContent">Just Me?:\n
-	Check if your server is online or not\n
-	from your Android device.\n
-	\n
-	Dont forget to visit my blog:\n
-	http://otfusion.org/jose152
-	</string>
+	<string name="dialogContent">Just Me?:\nCheck if your server is online or not\nfrom your Android device.\n\nDont forget to visit my blog:\nhttp://otfusion.org/jose152</string>
 	<string name="dialogCancel">STFU!</string>
     <string name="dialogVisit">Visit Blog!</string>
 	

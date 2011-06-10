@@ -119,5 +119,17 @@ public class JustMeEngine {
 	public void setPort(String address) {
 		this.port = getPort(address);
 	}
+	
+	/**
+	 * getHost() method:
+	 * this method will return the host of the object
+	 * @return address
+	 */
+	public String getHost() {
+		if(address.contains("://"))
+			return getHost(address);
+		else
+			return address;
+	}
 
 }

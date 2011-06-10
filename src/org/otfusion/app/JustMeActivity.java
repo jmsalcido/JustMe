@@ -41,7 +41,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-//import android.widget.ImageView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class JustMeActivity extends Activity {
@@ -54,7 +55,8 @@ public class JustMeActivity extends Activity {
 	
 	private Button button;
 	private EditText textBox;
-	//private ImageView imageTop, imageLoading;
+	private ImageView imagenTop;
+	private TextView textoTop;
 	
 	private String mAddress;
 	
@@ -108,10 +110,15 @@ public class JustMeActivity extends Activity {
 		// Creates the JustMeEngine engine object to work with.
 		engine = new JustMeEngine();
 		// Layout objects
+		imagenTop = (ImageView) findViewById(R.id.imagenTop);
 		button = (Button) findViewById(R.id.button);
 		textBox = (EditText) findViewById(R.id.name);
+		textoTop = (TextView) findViewById(R.id.textoTop);
 		
+		// Set events and fill objects
 		button.setOnClickListener(new OnlineButton());
+		// TODO: Get a "neutral" image
+		imagenTop.setImageResource(R.drawable.online); // changeme
 		
 		// SharedPreferences loaded.
 		mSharedPreferences = getSharedPreferences(SHAREDPREFERENCES, 0);
@@ -186,13 +193,16 @@ public class JustMeActivity extends Activity {
 			mAddress = textBox.getText().toString();
 			engine.setAddress(mAddress);
 			engine.setPort(mAddress);
+			mAddress = engine.getHost();
 			boolean online = engine.isOnline();
 			if (online) {
 				// imageTop = (ImageView) findViewById(R.id.imagenTop);
 				// imageTop.setImageResource(R.id.imageOnline);
+				textoTop.setText(mAddress + " - ONLINE");
 				toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
 			} else {
 				// img offline
+				textoTop.setText(mAddress + " - OFFLINE");
 				toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
 			}
 			toast.show();

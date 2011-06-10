@@ -4,10 +4,17 @@
     		android:layout_height="fill_parent" 
     		android:orientation="vertical" >
     		
+<TextView android:id="@+id/textoTop"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:text="@string/textoTop"/>
+		    
 <ImageView android:id="@+id/imagenTop"
     		android:layout_height="wrap_content" 
-    		android:src="@drawable/androidlogo" 
-    		android:layout_width="fill_parent"/>
+    		android:layout_width="fill_parent"
+    		android:layout_marginTop="5dp"
+    		android:layout_marginBottom="5dp"/>
     		
 <EditText android:id="@+id/name" 
 			android:layout_height="wrap_content"

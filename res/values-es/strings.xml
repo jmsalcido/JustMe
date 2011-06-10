@@ -6,15 +6,10 @@
 	<string name="no">YA-YA-YA...\nLA CAGASTE?</string>
 	<string name="yes">Servidor EN LINEA</string>
 	
+	<string name="textoTop">JustMe - Android App</string>
 	<string name="mainButton">Solo a mi?</string>
 	
-	<string name="dialogContent">Solo a Mi?:\n
-	Verifica si tu servidor esta EN LINEA ó NO\n
-	desde tu dispositivo Android.\n
-	\n
-	No olvides visitar mi blog:\n
-	http://otfusion.org/jose152
-	</string>
+	<string name="dialogContent">Solo a Mi?:\nVerifica si tu servidor esta EN LINEA ó NO\ndesde tu dispositivo Android.\n\nNo olvides visitar mi blog:\nhttp://otfusion.org/jose152</string>
 	<string name="dialogCancel">CHTM!</string>
     <string name="dialogVisit">Visitar Blog!</string>
 	
