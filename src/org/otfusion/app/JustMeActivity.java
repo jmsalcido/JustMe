@@ -91,6 +91,8 @@ public class JustMeActivity extends Activity {
 		SharedPreferences.Editor editor = mSharedPreferences.edit();
 		editor.putString("address", mAddress);
 		editor.commit();
+		textoTop.setText(R.string.textoTop);
+		imagenTop.setImageResource(R.drawable.neutral);
 	}
 	
 	/*
@@ -117,8 +119,7 @@ public class JustMeActivity extends Activity {
 		
 		// Set events and fill objects
 		button.setOnClickListener(new OnlineButton());
-		// TODO: Get a "neutral" image
-		imagenTop.setImageResource(R.drawable.online); // changeme
+		imagenTop.setImageResource(R.drawable.neutral);
 		
 		// SharedPreferences loaded.
 		mSharedPreferences = getSharedPreferences(SHAREDPREFERENCES, 0);
@@ -196,12 +197,13 @@ public class JustMeActivity extends Activity {
 			mAddress = engine.getHost();
 			boolean online = engine.isOnline();
 			if (online) {
-				// imageTop = (ImageView) findViewById(R.id.imagenTop);
-				// imageTop.setImageResource(R.id.imageOnline);
+				// Do the online dance?
+				imagenTop.setImageResource(R.drawable.online);
 				textoTop.setText(mAddress + " - ONLINE");
 				toast = Toast.makeText(mContexto, R.string.yes, Toast.LENGTH_LONG);
 			} else {
-				// img offline
+				// Do the offline dance?
+				imagenTop.setImageResource(R.drawable.offline);
 				textoTop.setText(mAddress + " - OFFLINE");
 				toast = Toast.makeText(mContexto, R.string.no, Toast.LENGTH_LONG);
 			}
